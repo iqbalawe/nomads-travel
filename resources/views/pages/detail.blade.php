@@ -20,79 +20,58 @@
             <div class="row">
                 <div class="col-lg-8 pl-lg-0">
                     <div class="card card-details">
-                        <h1>Nusa Penida</h1>
-                        <p>Republic of Indonesia Raya</p>
+                        <h1>{{ $item->title }}</h1>
+                        <p>{{ $item->location }}</p>
+                        @if ($item->galleries->count())
                         <div class="gallery">
                             <div class="xzoom-container">
-                                <img src="frontend/images/img_details.jpg" class="xzoom" id="xzoom-default"
-                                    xoriginal="frontend/images/img_details.jpg" />
+                                <img src="{{ Storage::url($item->galleries->first()->image) }}" class="xzoom"
+                                    id="xzoom-default"
+                                    xoriginal="{{ Storage::url($item->galleries->first()->image) }}" />
                             </div>
                             <div class="xzoom-thumbs">
-                                <a href="frontend/images/img_details.jpg">
-                                    <img src="frontend/images/img_details.jpg" class="xzoom-gallery" width="128"
-                                        xpreview="frontend/images/img_details.jpg" />
+                                @foreach ($item->galleries as $gallery)
+                                <a href="{{ Storage::url($gallery->image) }}">
+                                    <img src="{{ Storage::url($gallery->image) }}" class="xzoom-gallery" width="128"
+                                        xpreview="{{ Storage::url($gallery->image) }}" />
                                 </a>
-                                <a href="frontend/images/img_details.jpg">
-                                    <img src="frontend/images/img_details.jpg" class="xzoom-gallery" width="128"
-                                        xpreview="frontend/images/img_details.jpg" />
-                                </a>
-                                <a href="frontend/images/img_details.jpg">
-                                    <img src="frontend/images/img_details.jpg" class="xzoom-gallery" width="128"
-                                        xpreview="frontend/images/img_details.jpg" />
-                                </a>
-                                <a href="frontend/images/img_details.jpg">
-                                    <img src="frontend/images/img_details.jpg" class="xzoom-gallery" width="128"
-                                        xpreview="frontend/images/img_details.jpg" />
-                                </a>
-                                <a href="frontend/images/img_details.jpg">
-                                    <img src="frontend/images/img_details.jpg" class="xzoom-gallery" width="128"
-                                        xpreview="frontend/images/img_details.jpg" />
-                                </a>
+                                @endforeach
                             </div>
                         </div>
+                        @endif
                         <h2>Tentang Wisata</h2>
                         <p>
-                            Nusa Penida is an island (= nusa) part of the Republic of
-                            Indonesia located in the southeast of Bali separated by the
-                            Badung Strait. Near this island there are also other smaller
-                            islands namely Nusa Ceningan and Nusa Lembongan. The waters of
-                            the island of Nusa Penida are famous for their diving areas
-                            including Crystal Bay, Manta Point, Batu Meling, Batu Lumbung,
-                            Batu Abah, Toyapakeh and Malibu Point.
-                        </p>
-                        <p>
-                            Near this island there are also other smaller islands namely
-                            Nusa Ceningan and Nusa Lembongan. The waters of the island of
-                            Nusa Penida are famous for their diving areas including
-                            Crystal Bay, Manta Point, Batu Meling, Batu Lumbung, Batu
-                            Abah.
+                            {!! $item->about !!}
                         </p>
                         <div class="features row">
                             <div class="col-md-4">
                                 <div class="description">
-                                    <img src="frontend/images/ic_event.png" alt="" class="features-image" />
+                                    <img src="{{ url('frontend/images/ic_event.png') }}" alt=""
+                                        class="features-image" />
                                 </div>
                                 <div class="description">
                                     <h3>Featured Event</h3>
-                                    <p>Tari Kecak</p>
+                                    <p>{{ $item->featured_event }}</p>
                                 </div>
                             </div>
                             <div class="col-md-4 border-left">
                                 <div class="description">
-                                    <img src="frontend/images/ic_bahasa.png" alt="" class="features-image" />
+                                    <img src="{{ url('frontend/images/ic_bahasa.png') }}" alt=""
+                                        class="features-image" />
                                 </div>
                                 <div class="description">
                                     <h3>Language</h3>
-                                    <p>Bahasa Indonesia</p>
+                                    <p>{{ $item->language }}</p>
                                 </div>
                             </div>
                             <div class="col-md-4 border-left">
                                 <div class="description">
-                                    <img src="frontend/images/ic_foods.png" alt="" class="features-image" />
+                                    <img src="{{ url('frontend/images/ic_foods.png') }}" alt=""
+                                        class="features-image" />
                                 </div>
                                 <div class="description">
                                     <h3>Foods</h3>
-                                    <p>Local Foods</p>
+                                    <p>{{ $item->foods }}</p>
                                 </div>
                             </div>
                         </div>
@@ -103,37 +82,49 @@
                     <div class="card card-details card-right">
                         <h2>Members are going</h2>
                         <div class="members my-2">
-                            <img src="frontend/images/member-1.png" class="member-image mr-1" />
-                            <img src="frontend/images/member-2.png" class="member-image mr-1" />
-                            <img src="frontend/images/member-3.png" class="member-image mr-1" />
-                            <img src="frontend/images/member-4.png" class="member-image mr-1" />
-                            <img src="frontend/images/member-5.png" class="member-image mr-1" />
-                            <img src="frontend/images/more_member.png" class="member-image mr-1" />
+                            <img src="{{ url('frontend/images/member-1') }}.png" class="member-image mr-1" />
+                            <img src="{{ url('frontend/images/member-2') }}.png" class="member-image mr-1" />
+                            <img src="{{ url('frontend/images/member-3') }}.png" class="member-image mr-1" />
+                            <img src="{{ url('frontend/images/member-4') }}.png" class="member-image mr-1" />
+                            <img src="{{ url('frontend/images/member-5') }}.png" class="member-image mr-1" />
+                            <img src="{{ url('frontend/images/more_member.png') }}" class="member-image mr-1" />
                         </div>
                         <hr />
                         <h2>Trip Informations</h2>
                         <table class="trip-informations">
                             <tr>
                                 <th width="50%">Date of Departure</th>
-                                <td width="50%" class="text-right">18 June, 2020</td>
+                                <td width="50%" class="text-right">
+                                    {{ \Carbon\Carbon::create($item->date_of_departure)->format('F n, Y') }}</td>
                             </tr>
                             <tr>
                                 <th width="50%">Duration</th>
-                                <td width="50%" class="text-right">4D 3N</td>
+                                <td width="50%" class="text-right">{{ $item->duration }}</td>
                             </tr>
                             <tr>
                                 <th width="50%">Type</th>
-                                <td width="50%" class="text-right">Open Trip</td>
+                                <td width="50%" class="text-right">{{ $item->type }}</td>
                             </tr>
                             <tr>
                                 <th width="50%">Price</th>
-                                <td width="50%" class="text-right">$80,00 / Person</td>
+                                <td width="50%" class="text-right">${{ $item->price }},00 / person</td>
                             </tr>
                         </table>
                     </div>
 
                     <div class="join-container">
-                        <a href="{{ route('checkout') }}" class="btn btn-block btn-join-now mt-3 py-2">Join Now</a>
+                        @auth
+                        <form action="{{ route('checkout_process', $item->id) }}" method="post">
+                            @csrf
+                            <button class="btn btn-block btn-join-now mt-3 py-2" type="submit">
+                                Join Now
+                            </button>
+                        </form>
+                        @endauth
+                        @guest
+                        <a href="{{ route('login') }}" class="btn btn-block btn-join-now mt-3 py-2">Login or Register to
+                            Join</a>
+                        @endguest
                     </div>
                 </div>
             </div>
